@@ -1,0 +1,7 @@
+
+SELECT appointments.occurs_on, patients.first_name, patients.last_name
+FROM doctors
+JOIN appointments ON doctors.id = appointments.doctor_id
+JOIN patients ON appointments.patient_id = patients.id
+WHERE doctors.first_name = 'Rosalind'
+AND doctors.last_name = 'Franklin';

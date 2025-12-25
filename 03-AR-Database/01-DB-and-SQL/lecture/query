@@ -1,0 +1,3 @@
+SELECT patients.first_name, patients.last_name, appointments.occurs_on
+FROM doctors
+JOIN appointments ON patients.id = appointments.patient_id;
