@@ -7,7 +7,7 @@ end
 
 def end_game_message(player_score, bank_score)
   # TODO: return (not print!) a message telling if the user won or lost.
-  if player_score > 21 
+  if player_score > 21
     "Lost"
   elsif player_score == 21
     "Black Jack"
@@ -19,6 +19,3 @@ def end_game_message(player_score, bank_score)
     "Push"
   end
 end
-
-p end_game_message(18, 18)
-p end_game_message(22, 16)
