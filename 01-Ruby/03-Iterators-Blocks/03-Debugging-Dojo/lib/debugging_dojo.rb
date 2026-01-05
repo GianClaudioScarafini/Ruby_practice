@@ -6,7 +6,7 @@
 # Can you help me out?
 def double_number(number)
   # This method is supposed to double the input number
-  numer * 2
+  number * 2
 end
 
 # Ok, thanks so much!
@@ -14,7 +14,7 @@ end
 # I have the right idea, but I can't seem to get the syntax right.
 def double_array(numbers)
   # This method is supposed to double each number in the array
-  numbers.map do
+  numbers.map do |number|
     number * 2
   end
 end
@@ -23,15 +23,17 @@ end
 def capitalize_words_starting_with_a(string)
   # This method is supposed to capitalize words that start with 'a'
   processed_words = []
-  string.split.for_each do
-    if start_with?(word, 'a')
-      word.capitalize
+  string.split.each do |word|
+    if word.start_with?('a')
+      processed_words << word.capitalize
     else
-      word
+      processed_words << word
     end
   end
-  return processed_words.join(' ')
+  return processed_words.join(" ")
 end
+
+# p capitalize_words_starting_with_a('apple banana apricot')
 
 # OK for this next one, I have no idea. My boss said it should be similar
 # to the one above, but I can't see how.
@@ -47,14 +49,18 @@ def capitalize_words(string)
   # This method is supposed to capitalize words that match a condition
   processed_words = []
   string.split.each do |word|
-    if word.true
-      word.capitalize
+    if yield(word)
+      processed_words << word.capitalize
     else
-      word
+      processed_words << word
     end
   end
   return processed_words.join(' ')
 end
+
+# p capitalize_words('hi everybody it is nice to meet you') ## it should be equal to ==>'hi Everybody it is Nice to Meet you
+# p capitalize_words('apple banana apricot')
+
 
 # You're planning a party 🥳 but not everyone is invited 😱
 # This method will help you narrow down the guest list.
@@ -74,12 +80,14 @@ end
 # > plan_party(["Alice", "Bob", "Charlie"]) { |name| name.length > 3 }  # => ["Alice", "Charlie"]
 # > plan_party(["Alice", "Bob", "Charlie"]) { |name| name.include?('b') }  # => ["Bob"]
 #
-# rubocop:disable Lint/UselessAssignment
 def plan_party(guests)
   invited_guests = []
 
   guests.each do |guest|
-    guests << guest if yield
+    invited_guests << guest if yield guest
   end
+  
+  invited_guests
 end
-# rubocop:enable Lint/UselessAssignment
+
+p plan_party(["Alice", "Bob", "Charlie"]) { |name| name.start_with?('A') } 
