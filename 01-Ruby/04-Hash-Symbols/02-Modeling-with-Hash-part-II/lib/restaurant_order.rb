@@ -9,10 +9,31 @@ DISHES_CALORIES = {
   "Lemonade" => 90
 }
 
+MEAL = {
+  "Cheesy Combo" => DISHES_CALORIES["Cheese Burger"] + DISHES_CALORIES["Sweet Potatoes"] + DISHES_CALORIES["Lemonade"],
+  "Veggie Combo" => DISHES_CALORIES["Veggie Burger"] + DISHES_CALORIES["Sweet Potatoes"] + DISHES_CALORIES["Iced Tea"],
+  "Vegan Combo" => DISHES_CALORIES["Vegan Burger"] + DISHES_CALORIES["Salad"] + DISHES_CALORIES["Lemonade"]
+}
+
 def poor_calories_counter(burger, side, beverage)
   DISHES_CALORIES[burger] + DISHES_CALORIES[side] + DISHES_CALORIES[beverage]
 end
 
 def calories_counter(orders)
   # TODO: return number of calories for a less constrained order
+  order_calories = []
+  orders.each do |order|
+    if DISHES_CALORIES.key?(order)
+      order_calories << DISHES_CALORIES[order]
+    elsif MEAL.key?(order)
+      order_calories << MEAL[order]
+    else
+      warn "#{order} not in the menu"
+    end
+  end
+  return order_calories.sum
 end
+
+
+orders = ["Sweet Potatoes", "Cheesy Combo", "Lemonade", "Vegan Combo"]
+puts calories_counter(orders)
