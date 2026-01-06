@@ -8,7 +8,7 @@
 
 def repeate_v01(n_time)
   (1..n_time).each do |i|
-    yield # this get the parametr
+    yield # this does *not* get the parametr
   end
 end
 def repeate_v02(n_time)
