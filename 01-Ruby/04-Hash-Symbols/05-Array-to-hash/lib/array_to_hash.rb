@@ -16,4 +16,4 @@ def array_to_hash(array)
 end
 
 
-p array_to_hash(["array", "casa"])
+# p array_to_hash(["array", "casa"])
